@@ -65,7 +65,7 @@ build/qemu/.patched: build/qemu/.extracted qemu/patches/series $(QEMU_PATCHES)
 
 QEMU_GUI_AGENT_FILES := $(shell find qemu/gui-agent -type f \! \( -name '*.sw?' -o -name '*~' -o -name '.*' -o -name '*.patch' \) | sort)
 
-build/qemu/.gui-agent-copied-in: build/qemu/.extracted $(QEMU_GUI_AGENT_FILES)
+build/qemu/.gui-agent-copied-in: build/qemu/.extracted
 	rm -rf build/qemu/gui-agent
 	cp -a qemu/gui-agent build/qemu/
 	touch $@
