@@ -11,3 +11,6 @@ additional-seccomp-filters.patch
 suppress_vmdesc.patch
 crypto-add-none-random-provider.patch
 0001-Enable-Xen-debugging.patch
+igd-fix-undefined-behaviour.patch
+igd-improve-legacy-vbios-handling.patch
+igd-move-enabling-opregion-access-to-libxl.patch
