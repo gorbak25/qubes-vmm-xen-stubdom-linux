@@ -10,3 +10,4 @@ pci-fix-emu-mask.patch
 additional-seccomp-filters.patch
 suppress_vmdesc.patch
 crypto-add-none-random-provider.patch
+0001-Enable-Xen-debugging.patch
