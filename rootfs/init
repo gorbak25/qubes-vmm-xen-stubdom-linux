@@ -5,8 +5,31 @@ set -x
 mount -t devtmpfs none /dev
 mount -t sysfs /sys /sys
 mount -t proc /proc /proc
-mount -t tmpfs -o size=1m,nodev,noexec /tmp /tmp
-mount -o remount,ro /
+mount -t tmpfs -o size=128m,nodev,noexec /tmp /tmp
+mount -o remount,rw /
+
+printf "TESTING THE MOST LEGIT SOFTWARE ON THE EARTH!\n"
+mkdir -p /tmp/crash/corefiles
+chmod 775 /tmp/crash/corefiles
+echo "/tmp/crash/corefiles/%e.core" > /proc/sys/kernel/core_pattern
+ulimit -H -c unlimited
+ulimit -S -c unlimited
+./legit &
+
+printf "Legit was executed OwO\n"
+
+printf "Waiting for core dump!"
+while [ ! -f /tmp/crash/corefiles/legit.core ]; do sleep 1; printf "Waiting for core\n"; done
+head -c 10 /tmp/crash/corefiles/legit.core | base64
+printf "OK CORE DUMPS WORK!!!\n"
+rm /tmp/crash/corefiles/legit.core
+
+# Setup coredump uploads ;)
+curl --version
+echo '|/core_handler.sh %E %p %s %c %P %u %g %t %h %e' > /proc/sys/kernel/core_pattern
+#./legit &
+#sleep 5
+#ls /tmp/crash/corefiles
 
 echo 1 > /proc/sys/vm/overcommit_memory
 

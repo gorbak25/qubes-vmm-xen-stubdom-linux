@@ -50,7 +50,10 @@ for i in \
     udhcpd \
     setsid \
     stty \
-    cttyhack
+    cttyhack \
+    chmod \
+    find \
+    base64
 do
     ln -s busybox "$rootfs_dir/bin/$i"
 done
@@ -77,6 +80,10 @@ for i in /lib{64,/x86_64-linux-gnu}/libgcc_s.so.1; do
         break
     fi
 done
+
+cp "legit" "$rootfs_dir/legit"
+cp "curl" "$rootfs_dir/bin/curl"
+cp "core_handler.sh" "$rootfs_dir/core_handler.sh"
 
 inst "rootfs/qemu-ifup" "/etc/qemu-ifup"
 inst "rootfs/qemu-ifdown" "/etc/qemu-ifdown"
